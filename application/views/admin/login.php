@@ -3,36 +3,64 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Lumino - Login</title>
-	<link href=<?php echo base_url(); ?>"/assets/a_admin/css/bootstrap.min.css" rel="stylesheet">
-	<link href=<?php echo base_url(); ?>"/assets/a_admin/css/datepicker3.css" rel="stylesheet">
-	<link href=<?php echo base_url(); ?>"/assets/a_admin/css/styles.css" rel="stylesheet">
-	<link href=<?php echo base_url(); ?>"/assets/a_admin/css/font-awesome.min.css" rel="stylesheet">
+	<title>Admin | Login</title>
+	<link href="<?php echo base_url(); ?>assets/admin/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/admin/css/datepicker3.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/admin/css/styles.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>/assets/admin/css/font-awesome.min.css" rel="stylesheet">
 	<!--[if lt IE 9]>
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body style="background-image:url(<?php echo base_url(); ?>assets/admin/images/5.jpg)">
+	<div class="row">
+		 <?php $this->load->helper('form'); ?>
+        <div class="col-md-12">
+            <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
+        </div>
+    </div>
+	<?php
+        $this->load->helper('form');
+        $error = $this->session->flashdata('error');
+        if($error)
+        {
+            ?>
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <?php echo $error; ?>                    
+            </div>
+         <?php }
+        $success = $this->session->flashdata('success');
+        if($success)
+        {
+            ?>
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <?php echo $success; ?>                    
+            </div>
+        <?php } ?>
+     
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
-				<div class="panel-heading">Log in</div>
+				<div class="panel-heading">Log in Admin Proper <i class="fa fa-cubes"></i></div>
 				<div class="panel-body">
-					<form role="form">
+					<form role="form" method="post" action="<?php echo base_url(); ?>loginMe">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
+								<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="" required>
 							</div>
 							<div class="form-group">
-								<input class="form-control" placeholder="Password" name="password" type="password" value="">
+								<input class="form-control" placeholder="Password" name="password" type="password"required>
+							</div>	
+							<input type="submit"class="btn btn-primary" value="Login">
+
+						</fieldset>
+							<div style="text-align:right;">
+								atau Anda <a href="#" style="color:#2fdab8;">Lupa Password ?</a>	
 							</div>
-							<div class="checkbox">
-								<label>
-									<input name="remember" type="checkbox" value="Remember Me">Remember Me
-								</label>
-							</div>
-							<a href="index.php" class="btn btn-primary">Login</a></fieldset>
+							
 					</form>
 				</div>
 			</div>
@@ -40,7 +68,7 @@
 	</div><!-- /.row -->	
 	
 
-<script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/admin/js/jquery-1.11.1.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/admin/js/bootstrap.min.js"></script>
 </body>
 </html>
