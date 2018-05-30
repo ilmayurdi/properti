@@ -14,39 +14,24 @@
 	<![endif]-->
 </head>
 <body style="background-image:url(<?php echo base_url(); ?>assets/admin/images/5.jpg)">
-	<div class="row">
-		 <?php $this->load->helper('form'); ?>
-        <div class="col-md-12">
-            <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
-        </div>
-    </div>
-	<?php
-        $this->load->helper('form');
-        $error = $this->session->flashdata('error');
-        if($error)
-        {
-            ?>
-            <div class="alert alert-danger alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <?php echo $error; ?>                    
-            </div>
-         <?php }
-        $success = $this->session->flashdata('success');
-        if($success)
-        {
-            ?>
-            <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <?php echo $success; ?>                    
-            </div>
-        <?php } ?>
      
 	<div class="row">
+
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">Log in Admin Proper <i class="fa fa-cubes"></i></div>
+				<?php
+		        	if (validation_errors() || $this->session->flashdata('result_login')) {
+		        ?>
+		        <div class="alert bg-danger" role="alert">
+		        	<button type="button" class="close" data-dismiss="alert">&times;</button>
+		            <strong>Warning!</strong>
+		            <?php echo validation_errors(); ?>
+		            <?php echo $this->session->flashdata('result_login'); ?>
+		        </div>    
+		        <?php } ?>
 				<div class="panel-body">
-					<form role="form" method="post" action="<?php echo base_url(); ?>loginMe">
+					<form role="form" method="post" action="<?php echo base_url('login/proses'); ?>">
 						<fieldset>
 							<div class="form-group">
 								<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="" required>
@@ -58,7 +43,7 @@
 
 						</fieldset>
 							<div style="text-align:right;">
-								atau Anda <a href="#" style="color:#2fdab8;">Lupa Password ?</a>	
+								<a href="#" style="color:#2fdab8;">Lupa Password ?</a>	
 							</div>
 							
 					</form>
