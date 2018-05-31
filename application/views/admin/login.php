@@ -21,13 +21,13 @@
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">Log in Admin Proper <i class="fa fa-cubes"></i></div>
 				<?php
-		        	if (validation_errors() || $this->session->flashdata('result_login')) {
+		        	if (validation_errors() || $this->session->flashdata('error')) {
 		        ?>
 		        <div class="alert bg-danger" role="alert">
 		        	<button type="button" class="close" data-dismiss="alert">&times;</button>
 		            <strong>Warning!</strong>
-		            <?php echo validation_errors(); ?>
-		            <?php echo $this->session->flashdata('result_login'); ?>
+		            <?php //echo validation_errors(); ?>
+		            <?php echo $this->session->flashdata('error'); ?>
 		        </div>    
 		        <?php } ?>
 				<div class="panel-body">
